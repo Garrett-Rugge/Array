@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template <class T>
+class Array {
+public:
+		Array();
+	    Array(int size);
+        ~Array();
+        T & operator[](int i) const;
+        int size() const;
+        void fill(T k);
+        int * begin() {
+                return data;
+        }
+        int * end(){
+                return data + len;
+        }
+
+
+private:
+        int len;
+        T * data;
+};
+template <class T>
+Array<T>::Array() {
+	len = 0;
+	data = NULL;
+}
+
+template <class T>ls
+
+Array<T>::Array(int size) {
+        len = size;
+        data = new T[len];
+}
+template <class T>
+Array<T>::~Array() {
+        data = NULL;
+        delete data;
+}
+template <class T>
+T & Array<T>::operator[](int i) const {
+        return data[i];
+}
+template <class T>
+int Array<T>::size() const {
+        return len;
+}
+template <class T>
+void Array<T>::fill(T k) {
+        for(int i = 0; i < len; i++)
+                data[i] = k;
+}
+
+
+class Animal {
+public:
+    virtual string speak() const = 0;
+};
+
+class Cat : public Animal {
+public: 
+    virtual string speak() const {return "Meow!";}
+};
+
+class Dog : public Animal {
+public: 
+    virtual string speak() const {return "Woof!";}
+};
+
+
+int main()
+{
+	Array<Animal *> a(5);
+	cout << a[2]->speak() << endl;  // Prints "meow" or "woof".
+	return 0;
+}
