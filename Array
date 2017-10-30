@@ -32,8 +32,8 @@ string Dog::speak() const
 template <class T>
 class Array {
 public:
-		Array();
-	    Array(int size);
+	Array();
+	Array(int size);
         ~Array();
         T & operator[](int i) const;
         int size() const;
