@@ -88,6 +88,7 @@ void test1(){
 	a[3] = new Dog;
 	assert(a[2]->speak() == "Meow!");
 	assert(a[3]->speak() == "Woof!");
+	a.~Array();
 }
 void test2(){
 	Array<Animal *> a(5);
@@ -95,12 +96,12 @@ void test2(){
 	for(int i = 0; i<5; i++)
 		assert(a[i]->speak() == "Meow!");
 	assert(a.size() == 5);
+	a.~Array();
 }
 int main()
 {
 	test1();
 	test2();
-	
 	
 	cout << "All Tests Passed" << endl; 
 }
