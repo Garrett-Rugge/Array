@@ -64,8 +64,9 @@ Array<T>::Array(int size) {
 }
 template <class T>
 Array<T>::~Array() {
-        data = NULL;
-        delete data;
+        delete[] data;
+	len = 0;
+	data = NULL;
 }
 template <class T>
 T & Array<T>::operator[](int i) const {
@@ -82,7 +83,7 @@ void Array<T>::fill(T k) {
 }
 
 
-void test1(){
+void test1(){ //tests constructor and speak function
 	Array<Animal *> a(5);
 	a[2] = new Cat;
 	a[3] = new Dog;
@@ -90,13 +91,14 @@ void test1(){
 	assert(a[3]->speak() == "Woof!");
 	a.~Array();
 }
-void test2(){
+void test2(){ //tests fill function and size function
 	Array<Animal *> a(5);
 	a.fill(new Cat());
 	for(int i = 0; i<5; i++)
 		assert(a[i]->speak() == "Meow!");
 	assert(a.size() == 5);
 	a.~Array();
+	assert(a.size() == 0);
 }
 int main()
 {
